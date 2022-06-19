@@ -15,24 +15,24 @@ import 'package:quoctruong_todoapp/main.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
-  // testWidgets('Add new task flow', (WidgetTester tester) async {
-  //   //Create random task description to test
-  //   final String taskDescription = "New task ${Random().nextInt(1000)}";
-  //   await tester.pumpWidget(const MyApp());
+  testWidgets('Add new task flow', (WidgetTester tester) async {
+    //Create random task description to test
+    final String taskDescription = "New task ${Random().nextInt(1000)}";
+    await tester.pumpWidget(const MyApp());
 
-  //   //Make sure home screen have button to add task
-  //   expect(find.byIcon(Icons.add), findsOneWidget);
-  //   await tester.tap(find.byIcon(Icons.add));
-  //   await tester.pump();
-  //   //Add task UI with textfield and button to add
-  //   expect(find.byType(TextField), findsOneWidget);
-  //   expect(find.text("Add"), findsOneWidget);
-  //   await tester.enterText(find.byType(TextField).first, taskDescription);
-  //   await tester.tap(find.text("Add"));
-  //   await tester.pump(const Duration(seconds: 1));
-  //   expect(find.text("Add"), findsNothing);
-  //   expect(find.text(taskDescription), findsOneWidget);
-  // });
+    //Make sure home screen have button to add task
+    expect(find.byIcon(Icons.add), findsOneWidget);
+    await tester.tap(find.byIcon(Icons.add));
+    await tester.pump();
+    //Add task UI with textfield and button to add
+    expect(find.byType(TextField), findsOneWidget);
+    expect(find.text("Add"), findsOneWidget);
+    await tester.enterText(find.byType(TextField).first, taskDescription);
+    await tester.tap(find.text("Add"));
+    await tester.pump(const Duration(seconds: 1));
+    expect(find.text("Add"), findsNothing);
+    expect(find.text(taskDescription), findsOneWidget);
+  });
 
   testWidgets('Add task and update status', (WidgetTester tester) async {
     //Create random task description to test

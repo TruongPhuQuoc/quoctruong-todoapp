@@ -33,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
         _appBarTitle = "Incompleted Tasks";
         break;
       case 2:
-        _appBarTitle = "Completed Task";
+        _appBarTitle = "Completed Tasks";
         break;
       default:
         _appBarTitle = "All Tasks";
