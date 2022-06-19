@@ -70,13 +70,23 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: () {
                   _bloc.add(AddNewTaskEvent(
                       taskDescription: _textFieldController.text.trim()));
-                  // _textFieldController.text = "";
                   Navigator.pop(context);
                 },
               ),
             ],
           );
         });
+  }
+
+  void _showSnackbarErrorMessage(String message) {
+    var snackBar = SnackBar(
+      content: Text(
+        message,
+        style: const TextStyle(color: Colors.white),
+      ),
+      backgroundColor: Colors.red,
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   @override
@@ -88,14 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
           if (state is AddUpdateTaskState) {
             //Only show error message when add/update task failed
             if (!state.success) {
-              var snackBar = SnackBar(
-                content: Text(
-                  state.message,
-                  style: const TextStyle(color: Colors.white),
-                ),
-                backgroundColor: Colors.red,
-              );
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              _showSnackbarErrorMessage(state.message);
             }
           }
         },
@@ -113,20 +116,20 @@ class _HomeScreenState extends State<HomeScreen> {
           bottomNavigationBar: BottomNavigationBar(
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
-                icon: Icon(Icons.home),
+                icon: Icon(Icons.all_inbox),
                 label: 'All tasks',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.business),
-                label: 'Todo',
+                icon: Icon(Icons.task),
+                label: 'Incompleted',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.school),
+                icon: Icon(Icons.check_box),
                 label: 'Completed',
               ),
             ],
             currentIndex: _selectedIndex,
-            selectedItemColor: Colors.amber[800],
+            selectedItemColor: Colors.blueAccent,
             onTap: _onItemTapped,
           ),
         ),

@@ -18,6 +18,11 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
 
   Future<void> _addNewTask(
       AddNewTaskEvent event, Emitter<HomeScreenState> emit) async {
+    if (event.taskDescription.trim().isEmpty) {
+      emit(AddUpdateTaskState(
+          message: "Can not add empty task", success: false));
+      return;
+    }
     TaskModel task = TaskModel(description: event.taskDescription);
     var result = await _dbHelper.addTask(task);
     if (result is int) {
